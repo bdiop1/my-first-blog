@@ -8,15 +8,22 @@
         </div>
 
         <div>
-            <p>published: 26.05.2018, 12:14</p>
+            <p>
+		{{ posts }}		
+
+		
+		published: 26.05.2018, 12:14
+	    </p>
             <h2><a href="">My first post</a></h2>
             <p>APour le moment , je suis entrain d'apprendre le mecanisme de creation de la page. Ceci est un exemple d ou j en suis. Tu peux ouvrir de temps en temps la page pour voir ou j en suis lais actuellement je suis un tutoriel m apprenant des concepts encore plus sophistiques; Ouvre par exemple courtage.pythonanywhere.com/admin/</p>
         </div>
 
-        <div>
-            <p>published: 26.05.2018, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
+        {% for post in posts %}
+    		<div>
+        		<p>published: {{ post.published_date }}</p>
+        		<h1><a href="">{{ post.title }}</a></h1>
+        		<p>{{ post.text|linebreaksbr }}</p>
+   		 </div>
+	{% endfor %}
     </body>
 </html>
