@@ -1,37 +1,12 @@
-{% load staticfiles %} 
-<html>
-    <head>
-	<title>Courtage blog</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="{% static 'css/blog.css' %}">	
-	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Introduction</a></h1>
-        </div>
-
-        <div>
-            <p>
-		{{ posts }}		
-
-		
-		published: 26.05.2018, 12:14
-	    </p>
-            <h2><a href="">My first post</a></h2>
-            <p>APour le moment , je suis entrain d'apprendre le mecanisme de creation de la page. Ceci est un exemple d ou j en suis. Tu peux ouvrir de temps en temps la page pour voir ou j en suis lais actuellement je suis un tutoriel m apprenant des concepts encore plus sophistiques; Ouvre par exemple courtage.pythonanywhere.com/admin/</p>
-        </div>
-
-        {% for post in posts %}
-    		<div>
-        		<p>published: {{ post.published_date }}</p>
-        		<h1><a href="">{{ post.title }}</a></h1>
-        		<p>{{ post.text|linebreaksbr }}</p>
-   		 </div>
-	{% endfor %}
-	<div>
-            <h1><a href="https://en.wikipedia.org/wiki/Django" class="external_link" id="link_to_wiki_page"> Here </a></h1>
-        </div>
-   </body>
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.published_date }}</p>
+                    </div>
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+{% endblock %}
